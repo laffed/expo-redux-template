@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "rn-expo-toolkit",
-    "slug": "rn-expo-toolkit",
+    "name": "expo-redux-template",
+    "slug": "expo-redux-template",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
