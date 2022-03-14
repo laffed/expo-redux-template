@@ -39,14 +39,13 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:jest/all',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/eslint-recommended'
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:react/jsx-runtime'
   ],
   'ignorePatterns': [
     'node_modules/',
     'babel.config.js',
-    'metro.config.js',
-    'jest.config.js',
-    '**/__mocks__/**'
+    'scripts/'
   ],
   'rules': {
     'import/order': [
@@ -150,7 +149,6 @@ module.exports = {
       'objectLiterals': 'never',
     } }],
 
-
     'jest/no-disabled-tests': 'warn',
     'jest/expect-expect': 'off',
     'jest/prefer-expect-assertions': 'off',
@@ -160,6 +158,14 @@ module.exports = {
 
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+
+    'no-restricted-imports': ['error', {
+      'paths': [{
+        'name': '@react-navigation/native',
+        'importNames': ['useNavigation'],
+        'message': 'Prefer safe implementation of useNavigation from src/hooks',
+      }],
+    }],
   },
   'overrides': [
     {
@@ -183,6 +189,12 @@ module.exports = {
             },
           }
         ],
+      },
+    },
+    {
+      'files': ['useNavigation.ts', 'useRoute.ts'],
+      'rules': {
+        'no-restricted-imports': 'off',
       },
     }
   ],

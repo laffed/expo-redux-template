@@ -1,1 +1,1 @@
-export {};
+export { Provider } from './Provider';

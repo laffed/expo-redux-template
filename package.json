@@ -1,7 +1,7 @@
 {
   "name": "@laffed/expo-redux-template",
   "description": "Expo Template with TS and Redux",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/laffed/expo-redux-template.git"
@@ -10,7 +10,8 @@
     "react native",
     "template",
     "redux",
-    "expo"
+    "expo",
+    "react navigation 6"
   ],
   "author": "laffed",
   "license": "ISC",
@@ -24,13 +25,16 @@
     "eject": "expo eject",
     "test": "jest --watchAll",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint-fix": "eslint --fix . --ext .ts --ext .tsx"
+    "lint-fix": "eslint --fix . --ext .ts --ext .tsx",
+    "pre-document": "tsc --out ./scripts/routes.js ./src/navigation/routes.ts"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.0",
+    "@hookform/resolvers": "^2.8.8",
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/devtools": "^6.0.5",
     "@react-navigation/native": "^6.0.2",
@@ -46,16 +50,22 @@
     "expo-status-bar": "~1.2.0",
     "expo-web-browser": "~10.1.0",
     "lodash": "^4.17.21",
+    "lottie-react-native": "5.0.1",
+    "octokit": "^1.7.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-hook-form": "^7.28.0",
     "react-native": "0.64.3",
+    "react-native-paper": "^4.11.2",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-web": "0.17.1",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
     "redux-persist": "^6.0.0",
-    "redux-saga": "^1.1.3"
+    "redux-saga": "^1.1.3",
+    "typesafe-actions": "^5.1.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
