@@ -1,7 +1,7 @@
 {
   "name": "@laffed/expo-redux-template",
   "description": "Expo Template with TS and Redux",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/laffed/expo-redux-template.git"
