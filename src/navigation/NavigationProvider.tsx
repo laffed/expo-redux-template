@@ -3,18 +3,17 @@ import { NavigationContainer, useNavigationContainerRef } from '@react-navigatio
 
 import { useNavigationDevTools } from 'hooks';
 
-import { RootNavigatorParamsList } from './types';
 import { RootStackNavigator } from './stacks/RootStackNavigator';
 
 
 export const NavigationProvider: VFC = () => {
 
-  const navigationRef = useNavigationContainerRef<RootNavigatorParamsList>();
+  const navigationRef = useNavigationContainerRef();
   useNavigationDevTools()(navigationRef);
 
   return (
     <NavigationContainer
-      ref={ navigationRef }
+      ref={navigationRef}
     >
       <RootStackNavigator />
     </NavigationContainer>

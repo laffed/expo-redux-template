@@ -18,15 +18,15 @@ export const RootStackNavigator: VFC = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName={ RootNavigatorRoutes.TAB_STACK }
+      initialRouteName={RootNavigatorRoutes.TAB_STACK}
     >
       <Screen
-        name={ RootNavigatorRoutes.TAB_STACK }
-        component={ TabStackNavigator }
+        name={RootNavigatorRoutes.TAB_STACK}
+        component={TabStackNavigator}
       />
       <Screen
-        name={ ModalRoutes.MENU }
-        component={ MenuModal }
+        name={ModalRoutes.MENU}
+        component={MenuModal}
       />
     </Navigator>
   );

@@ -20,26 +20,30 @@ export const TabStackNavigator: VFC<RootStackScreenProp<RootNavigatorRoutes.TAB_
       }}
     >
       <Screen
-        name={ TabRoutes.HOME }
-        component={ HomeScreen }
-        options={{ tabBarIcon: ({ color }) => (
-          <Ionicons
-            name='home-outline'
-            size={ 20 }
-            color={ color }
-          />
-        ) }}
+        name={TabRoutes.HOME}
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons
+              name='home-outline'
+              size={20}
+              color={color}
+            />
+          )
+        }}
       />
       <Screen
-        name={ TabRoutes.PROFILE }
-        component={ ProfileScreen }
-        options={{ tabBarIcon: ({ color }) => (
-          <Ionicons
-            name='person-outline'
-            size={ 20 }
-            color={ color }
-          />
-        ) }}
+        name={TabRoutes.PROFILE}
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons
+              name='person-outline'
+              size={20}
+              color={color}
+            />
+          )
+        }}
       />
     </Navigator>
   );

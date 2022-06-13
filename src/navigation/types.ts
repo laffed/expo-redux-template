@@ -4,6 +4,12 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { TabRoutes, ModalRoutes, RootNavigatorRoutes } from './routes';
 
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootNavigatorParamsList {}
+  }
+}
+
 /** ROOT STACK SCOPE */
 export type RootNavigatorParamsList = ModalScreenParamsList & {
   [RootNavigatorRoutes.TAB_STACK]: NavigatorScreenParams<TabNavigatorParamsList>;
@@ -22,6 +28,6 @@ export type TabNavigatorParamsList = {
 }
 export type TabStackScreenProp<T extends keyof TabNavigatorParamsList> =
   CompositeScreenProps<
-  BottomTabScreenProps<TabNavigatorParamsList, T>,
-  RootStackScreenProp<keyof RootNavigatorParamsList>
+    BottomTabScreenProps<TabNavigatorParamsList, T>,
+    RootStackScreenProp<keyof RootNavigatorParamsList>
   >;
