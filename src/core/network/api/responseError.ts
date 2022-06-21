@@ -7,10 +7,9 @@ export class ResponseError<ErrorData = unknown> extends Error {
   message: string;
   data?: ErrorData;
 
-  constructor(message: string, status?: number, problem?: PROBLEM_CODE, data?: ErrorData) {
+  constructor(message: string, status: number, problem: PROBLEM_CODE, data?: ErrorData) {
     super();
     this.name = 'ResponseError';
-
     this.status = status;
     this.problem = problem;
     this.message = message;

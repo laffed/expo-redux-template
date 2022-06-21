@@ -3,6 +3,13 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
+      ["module:react-native-dotenv", {
+        moduleName: "react-native-dotenv",
+        path: ".env",
+        safe: false,
+        allowUndefined: true,
+        verbose: false
+      }],
       [
         'module-resolver',
         {
@@ -19,13 +26,17 @@ module.exports = function (api) {
             '.json',
           ],
           alias: {
-            'components': './src/components',
-            'containers': './src/containers',
-            'navigation': './src/navigation',
-            'core': './src/core',
-            'styles': './src/styles',
-            'hooks': './src/hooks',
-            'network': './src/network',
+            '@app': './src',
+            '@components': './src/components',
+            '@containers': './src/containers',
+            '@navigation': './src/navigation',
+            '@core': './src/core',
+            '@styles': './src/styles',
+            '@hooks': './src/util/hooks',
+            '@methods': './src/util/methods',
+            '@network': './src/core/network',
+            '@selectors': './src/core/selectors',
+            '@actions': './src/core/store/index',
           },
         },
       ],

@@ -4,9 +4,11 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { TabRoutes, ModalRoutes, RootNavigatorRoutes } from './routes';
 
+
 declare global {
   namespace ReactNavigation {
-    interface RootParamList extends RootNavigatorParamsList {}
+    // @ts-expect-error Modifying/extending React Navigation Lib types
+    type RootParamList = RootNavigatorParamsList
   }
 }
 

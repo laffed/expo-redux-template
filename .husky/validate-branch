@@ -1,0 +1,19 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+branch="$(git rev-parse --abbrev-ref HEAD)"
+valid_branch_reg="^(bug|feat|hotfix)\/[a-zA-Z0-9_]+$"
+
+if [[ "$branch" = "master" || "$branch" = "staging" ]]; then
+  echo "Cannot directly modify git history of a protected branch!"
+  echo "Protected branch $branch may only be modified by merge request"
+  exit 1
+fi
+
+if [[ ! $branch =~ $valid_branch_reg ]]; then
+  echo "Branch $branch does not adhere to project branch naming convention"
+  echo "Validated against: $valid_branch_reg"
+  exit 1
+fi
+
+exit 0

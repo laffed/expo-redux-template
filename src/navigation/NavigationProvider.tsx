@@ -1,7 +1,7 @@
 import { VFC } from 'react';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 
-import { useNavigationDevTools } from 'hooks';
+import { useNavigationDevTools } from '@hooks/index';
 
 import { RootStackNavigator } from './stacks/RootStackNavigator';
 
@@ -13,7 +13,7 @@ export const NavigationProvider: VFC = () => {
 
   return (
     <NavigationContainer
-      ref={navigationRef}
+      ref={ navigationRef }
     >
       <RootStackNavigator />
     </NavigationContainer>

@@ -1,83 +1,104 @@
-import { AxiosRequestConfig } from 'axios';
-import {
-  create,
-  HEADERS,
-  ApiResponse,
-  ApisauceInstance
-} from 'apisauce';
-import { get as _get } from 'lodash';
-
-import { ResponseError } from './responseError';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-export type TUnknownObject = Record<string, unknown>
-export type THandlerType<R, E = unknown> = R | undefined | ResponseError<E>;
-export type TResponseErrorData = {
-  message: string;
-}
-export type TApiResponse<R> = Promise<THandlerType<R>>
+type Headers = Readonly<{
+  Accept?: 'application/json';
+  'Content-Type'?: 'application/json; charset=utf-8';
+  'Access-Control-Allow-Credentials'?: boolean,
+  'X-Requested-With'?: 'XMLHttpRequest',
+}>
 
-export type TRetryOptions = {
-  retries?: number,
-  delay?: number,
-  timeout?: number
-}
-
-export type TApi = {
-  instance: ApisauceInstance,
-  get: <R, P = TUnknownObject>(path: string, params?: P, config?: AxiosRequestConfig) => TApiResponse<R>,
-  del: <R, P = TUnknownObject>(path: string, params?: P, config?: AxiosRequestConfig) => TApiResponse<R>,
-  post: <R, D = TUnknownObject>(path: string, data?: D, config?: AxiosRequestConfig) => TApiResponse<R>,
-  put: <R, D = TUnknownObject>(path: string, data?: D, config?: AxiosRequestConfig) => TApiResponse<R>,
-  patch: <R, P = TUnknownObject>(path: string, params?: P, config?: AxiosRequestConfig) => TApiResponse<R>
-}
-
-export interface ICreateAPIParam { baseURL: string, headers?: HEADERS}
-
-export type TCreateAPI = (props: ICreateAPIParam) => TApi;
-
-const DEFAULT_RETRY_OPTIONS = {
-  retries: 3,
-  delay: 0,
-  timeout: 0,
+const defaultHeaders: Headers = {
+  Accept: 'application/json',
+  'Content-Type': 'application/json; charset=utf-8',
+  'Access-Control-Allow-Credentials': true,
+  'X-Requested-With': 'XMLHttpRequest',
 };
 
+const injectToken = async (config: AxiosRequestConfig): Promise<AxiosRequestConfig> => {
+  try {
+    const token = await AsyncStorage.getItem('accessToken');
 
-/**
- * Function create API instance with provided parameters.
- * @param {Object} obj - createAPI configuration object
- * @param {Object} obj.baseURL - base API url for all requests
- * @param {Object} obj.headers - common headers for all requests
- * @param {Object} obj.config - retry/network config default to { retries: 3, delay: 0, timeout: 0 }
- *
- * Also possible to pass config per request. It will not affect general API configuration
- *
- * Example:
- * api.get<TResponse>('/your_awesome_path', params, {
- *  timeout: 7000,
- *  'axios-retry': { retries: 2 },
- * });
- */
-export const createAPI: TCreateAPI = ({ baseURL, headers }) => {
-  const handler = <R, E>(res: ApiResponse<R, E>): THandlerType<R, E> => {
-    if (res.ok) return res.data;
-    const errorMessage = _get(res, 'data.errorMessage', 'unknown network error');
-    throw new ResponseError<E>(errorMessage, res.status, res.problem, res.data);
-  };
+    if (token !== null) {
+      config = {
+        ...config,
+        headers: {
+          ...config.headers,
+          Authorization: `Bearer ${token}`,
+        },
+      };
+    }
 
-  const api = create({ baseURL, headers });
-
-  return {
-    instance: api,
-    get: <R, P = TUnknownObject>(path: string, params?: P): TApiResponse<R> =>
-      api.get<R, TResponseErrorData>(path, params).then(handler),
-    del: <R, P = TUnknownObject>(path: string, params?: P): TApiResponse<R> =>
-      api.delete<R>(path, params).then(handler),
-    post: <R, D = TUnknownObject>(path: string, data?: D): TApiResponse<R> =>
-      api.post<R>(path, data).then(handler),
-    put: <R, D = TUnknownObject>(path: string, data?: D): TApiResponse<R> =>
-      api.put<R>(path, data).then(handler),
-    patch: <R, P = TUnknownObject>(path: string, params?: P): TApiResponse<R> =>
-      api.patch<R>(path, params).then(handler),
-  };
+    return config;
+  } catch (error) {
+    throw new Error(String(error));
+  }
 };
+
+type MethodRequestConfig<D = undefined> = Omit<AxiosRequestConfig<D>, 'baseURL'>;
+
+export class Http {
+  private instance: AxiosInstance;
+
+  private get http(): AxiosInstance {
+    return this.instance;
+  }
+
+  constructor(config: AxiosRequestConfig & {
+    baseURL: string;
+    withCredentials: boolean;
+    headers?: Headers
+  }) {
+    const http = axios.create({
+      ...config,
+      headers: config.headers ?? defaultHeaders,
+    });
+
+    if (config.withCredentials) {
+      http.interceptors.request.use(injectToken, (error) => Promise.reject(error));
+    }
+
+    http.interceptors.response.use(
+      (response) => response,
+      (error: AxiosError) => {
+        return this.handleError(error);
+      }
+    );
+
+    this.instance = http;
+  }
+
+  request<T, R = AxiosResponse<T>>(config: MethodRequestConfig): Promise<R> {
+    return this.http.request<T, R>(config);
+  }
+
+  get<T, R = AxiosResponse<T>>(url: string, config?: MethodRequestConfig): Promise<R> {
+    return this.http.get<T, R>(url, config);
+  }
+
+  post<T, R = AxiosResponse<T>>(
+    url: string,
+    data?: T,
+    config?: MethodRequestConfig
+  ): Promise<R> {
+    return this.http.post<T, R>(url, data, config);
+  }
+
+  put<T, R = AxiosResponse<T>>(
+    url: string,
+    data?: T,
+    config?: MethodRequestConfig
+  ): Promise<R> {
+    return this.http.put<T, R>(url, data, config);
+  }
+
+  delete<T, R = AxiosResponse<T>>(url: string, config?: MethodRequestConfig): Promise<R> {
+    return this.http.delete<T, R>(url, config);
+  }
+
+  private handleError(error: AxiosError) {
+    return Promise.reject(error);
+  }
+}
+

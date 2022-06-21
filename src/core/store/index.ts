@@ -1,1 +1,4 @@
-export { Provider } from './Provider';
+export { barActions, barAsyncActions } from './bar';
+
+
+

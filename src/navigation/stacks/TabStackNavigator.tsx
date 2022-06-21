@@ -2,7 +2,7 @@ import { VFC } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import { HomeScreen, ProfileScreen } from 'containers';
+import { HomeScreen, ProfileScreen } from '@containers/index';
 
 import { RootStackScreenProp, TabNavigatorParamsList } from '../types';
 import { RootNavigatorRoutes, TabRoutes } from '../routes';
@@ -20,29 +20,29 @@ export const TabStackNavigator: VFC<RootStackScreenProp<RootNavigatorRoutes.TAB_
       }}
     >
       <Screen
-        name={TabRoutes.HOME}
-        component={HomeScreen}
+        name={ TabRoutes.HOME }
+        component={ HomeScreen }
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons
               name='home-outline'
-              size={20}
-              color={color}
+              size={ 20 }
+              color={ color }
             />
-          )
+          ),
         }}
       />
       <Screen
-        name={TabRoutes.PROFILE}
-        component={ProfileScreen}
+        name={ TabRoutes.PROFILE }
+        component={ ProfileScreen }
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons
               name='person-outline'
-              size={20}
-              color={color}
+              size={ 20 }
+              color={ color }
             />
-          )
+          ),
         }}
       />
     </Navigator>

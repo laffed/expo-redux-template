@@ -2,8 +2,7 @@ module.exports = {
   root: true,
   env: {
     node: true,
-    jest: true,
-    es6: true
+    es6: true,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -15,27 +14,40 @@ module.exports = {
     react: {
       pragma: 'React',
       version: 'detect'
+    },
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx']
+    },
+    'import/ignore': ['node_moduels', 'react-native'],
+    'import/resolver': {
+      'node': {
+        'moduleDirectory': ['node_modules', 'src/']
+      },
+      'typescript': {
+
+      }
     }
   },
-  plugins: ['react-hooks', '@typescript-eslint/eslint-plugin'],
+  plugins: ['react-hooks', '@typescript-eslint/eslint-plugin', 'import'],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:import/warnings',
     'plugin:import/errors',
     'plugin:import/typescript',
-    'plugin:jest/all',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:@typescript-eslint/strict',
-    'plugin:prettier/recommended',
   ],
   ignorePatterns: [
     '.eslintrc.js',
+    'coverage/',
     'node_modules/',
     'babel.config.js',
+    'jest.config.js',
   ],
   rules: {
     'eqeqeq': 2,
+    'newline-before-return': 'error',
     'eol-last': ['error', 'always'],
     'object-curly-spacing': ['error', 'always'],
     'array-bracket-spacing': ['error', 'never'],
@@ -82,8 +94,10 @@ module.exports = {
         'newlines-between': 'always',
       }
     ],
+    'import/no-unresolved': 'error',
     'import/newline-after-import': ['error', { 'count': 2 }],
     'import/namespace': [2, { 'allowComputed': true }],
+    'react/react-in-jsx-scope': 'off',
     'react/self-closing-comp': ['error', {
       'component': true,
       'html': true,
@@ -124,7 +138,7 @@ module.exports = {
       2,
       {
         'selector': 'variableLike',
-        'format': ['camelCase'],
+        'format': ['strictCamelCase', 'StrictPascalCase', 'UPPER_CASE'],
         'leadingUnderscore': 'allow',
         'filter': {
           'regex': 'Schema',
@@ -134,12 +148,12 @@ module.exports = {
       {
         'selector': 'variable',
         'types': ['boolean'],
-        'format': ['PascalCase'],
+        'format': ['StrictPascalCase'],
         'prefix': ['is', 'should', 'has', 'can', 'did', 'will']
       },
       {
         'selector': 'enum',
-        'format': ['PascalCase'],
+        'format': ['StrictPascalCase'],
       },
       {
         'selector': 'enumMember',
@@ -156,8 +170,29 @@ module.exports = {
     '@typescript-eslint/strict-boolean-expressions': [2, {
       'allowString': false,
       'allowNumber': false,
-      'allowNullableObject': false,
+      'allowNullableObject': true,
     }],
-    '@typescript-eslint/no-confusing-void-expression': 2
+    '@typescript-eslint/no-unnecessary-type-arguments': 0,
+    '@typescript-eslint/no-namespace': 0,
+    '@typescript-eslint/no-confusing-void-expression': 2,
+    '@typescript-eslint/no-unsafe-assignment': 0,
+    'no-restricted-imports': [
+      'error', {
+        'paths': [
+          {
+            'name': 'react-redux',
+            'importNames': ['useDispatch'],
+            'message': 'Please use useAppDispatch from @hooks/index'
+          }
+        ]
+      }
+    ]
   },
+  overrides: [
+    {
+      files: ["**.test.**"],
+      plugins: ["jest"],
+      extends: ["plugin:jest/all"],
+    }
+  ]
 };
