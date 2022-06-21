@@ -32,7 +32,6 @@
     "tsc": "tsc",
     "pre-document": "tsc --out ./scripts/routes.js ./src/navigation/routes.ts",
     "postinstall": "patch-package",
-    "prepare": "husky install",
     "_validate-branch": "chmod +x ./.husky/validate-branch && sh ./.husky/validate-branch",
     "validate": "npm-run-all _validate-branch tsc lint _test",
     "_validate": "npm-run-all tsc lint _test"
