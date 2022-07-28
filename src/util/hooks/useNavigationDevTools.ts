@@ -1,5 +1,5 @@
 import { useReduxDevToolsExtension } from '@react-navigation/devtools';
-import { noop } from 'lodash';
+import noop from 'lodash/noop';
 
 
 export const useNavigationDevTools = (): typeof useReduxDevToolsExtension => {

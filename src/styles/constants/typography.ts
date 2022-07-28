@@ -1,44 +1,30 @@
-import { TextStyle } from 'react-native';
-
 import { Fonts } from '../fonts';
 
 import { Colors } from './colors';
 
 
-export enum Typography {
-  NAVIGATION_HEADER,
-  HEADER_1,
-  HEADER_2,
-  PARAGRAPH_1,
-  PARAGRAPH_2,
-  LINK_1,
-  LINK_2
-}
-
-export const Typographies: {
-  [key in Typography]: TextStyle;
-} = {
-  [Typography.NAVIGATION_HEADER]: {
-    color: Colors.black,
+export const Typographies = {
+  NAVIGATION_HEADER: {
+    color: Colors.BLACK,
     fontWeight: '700',
     fontFamily: Fonts.MONT_BOLD,
   },
-  [Typography.HEADER_1]: {
-    color: Colors.black,
+  HEADER_1: {
+    color: Colors.BLACK,
   },
-  [Typography.HEADER_2]: {
-    color: Colors.black,
+  HEADER_2: {
+    color: Colors.BLACK,
   },
-  [Typography.PARAGRAPH_1]: {
-    color: Colors.black,
+  PARAGRAPH_1: {
+    color: Colors.BLACK,
   },
-  [Typography.PARAGRAPH_2]: {
-    color: Colors.black,
+  PARAGRAPH_2: {
+    color: Colors.BLACK,
   },
-  [Typography.LINK_1]: {
-    color: Colors.blue,
+  LINK_1: {
+    color: Colors.BLUE,
   },
-  [Typography.LINK_2]: {
-    color: Colors.black,
+  LINK_2: {
+    color: Colors.BLACK,
   },
 } as const;

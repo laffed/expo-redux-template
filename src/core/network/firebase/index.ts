@@ -1,1 +1,1 @@
-export { initFirebase } from './init';
+export {}
