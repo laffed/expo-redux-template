@@ -91,8 +91,6 @@ module.exports = {
     'no-multi-spaces': [2],
     'no-console': [2],
     'multiline-comment-style': 'off',
-    'etc/no-commented-out-code': 2, 
-    'etc/prefer-less-than': 2, 
     'comma-spacing': [2, { 'before': false, 'after': true }],
     'comma-dangle': [2, { 'objects': 'always-multiline' }],
     'semi': [2, 'always'],

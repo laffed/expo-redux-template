@@ -5,11 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { NavigationProvider } from '@app/navigation/NavigationProvider';
 import { StoreProvider } from '@app/core/store/StoreProvider';
-// import { initFirebase } from '@app/core/network/firebase';
 
-
-/* Firebase */
-// initFirebase();
 
 export const App: VFC = () => {
 
@@ -22,3 +18,5 @@ export const App: VFC = () => {
     </StoreProvider>
   );
 };
+
+export default App;
