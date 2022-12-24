@@ -1,8 +1,13 @@
 import { VFC } from 'react';
 
 import { RootStackScreenProp, ModalRoutes } from '@navigation/index';
+import { SafeScreen } from '@app/components';
 
 
 export const MenuModal: VFC<RootStackScreenProp<ModalRoutes.MENU>> = () => {
-  return null;
+  return (
+    <SafeScreen>
+      {null}
+    </SafeScreen>
+  );
 };

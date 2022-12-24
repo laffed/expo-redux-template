@@ -2,4 +2,4 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 
-yarn npm-run-all _validate-branch tsc lint
+yarn npm-run-all tsc lint

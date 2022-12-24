@@ -27,6 +27,9 @@ export const RootStackNavigator: VFC = () => {
       <Screen
         name={ ModalRoutes.MENU }
         component={ MenuModal }
+        options={{
+          presentation: 'modal',
+        }}
       />
     </Navigator>
   );
