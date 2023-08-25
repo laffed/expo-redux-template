@@ -1,4 +1,6 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, {
+  AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse
+} from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 

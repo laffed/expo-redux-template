@@ -28,11 +28,10 @@ module.exports = {
       }
     }
   },
-  plugins: ['react-hooks', '@typescript-eslint/eslint-plugin', 'import'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint/eslint-plugin', 'import'],
   extends: [
     'plugin:eslint-comments/recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended',
     'plugin:import/warnings',
     'plugin:import/errors',
     'plugin:import/typescript',
@@ -169,7 +168,7 @@ module.exports = {
     }],
     '@typescript-eslint/no-unused-vars': [
       'warn',
-      { 
+      {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
         caughtErrorsIgnorePattern: '^_',

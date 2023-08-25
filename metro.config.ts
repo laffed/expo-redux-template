@@ -1,11 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 import { getDefaultConfig } from '@expo/metro-config';
 
 
 const defaultConfig = getDefaultConfig(__dirname);
 
-// @ts-expect-error
+/* eslint-disable @typescript-eslint/no-unsafe-call -- conf */
+// @ts-expect-error -- allowed
 defaultConfig?.resolver?.assetExts?.push?.('cjs');
+/* eslint-enable @typescript-eslint/no-unsafe-call -- conf */
 
 module.exports = defaultConfig;

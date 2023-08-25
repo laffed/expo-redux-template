@@ -5,5 +5,5 @@ export const Colors = {
   LIGHT_GREEN: '#7be898',
   DARK_GREEN: '#17301c',
   RED: '#ff0000',
-  SALMON: '#f595a2'
+  SALMON: '#f595a2',
 } as const;

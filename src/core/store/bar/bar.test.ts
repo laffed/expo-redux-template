@@ -10,8 +10,10 @@ import { barInitialState } from './bar.slice';
 import { barReducer } from './index';
 
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any -- ok
+
+/* eslint-disable @typescript-eslint/consistent-type-assertions -- empty action okay */
 const EmptyAction = {} as unknown as AnyAction;
+/* eslint-enable @typescript-eslint/consistent-type-assertions -- empty action okay */
 
 describe('bar slice', () => {
   it('reduce root state', () => {

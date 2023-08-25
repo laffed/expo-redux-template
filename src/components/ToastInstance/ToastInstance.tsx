@@ -45,9 +45,9 @@ const StyledToast: VFC<{
     }}
     >
       <Feather
-        name={icon}
-        color={color}
-        size={24}
+        name={ icon }
+        color={ color }
+        size={ 24 }
         style={{
           marginRight: 5,
         }}
@@ -65,8 +65,8 @@ const StyledToast: VFC<{
 
 const toastRendererOf = (type: ToastEnum) => (params: ToastConfigParams<undefined>) => (
   <StyledToast
-    text={params.text1}
-    type={type}
+    text={ params.text1 }
+    type={ type }
   />
 );
 
@@ -89,8 +89,8 @@ export const ToastInstance: VFC = () => {
 
   return (
     <Toast
-      config={toastConfig}
-      topOffset={offset}
+      config={ toastConfig }
+      topOffset={ offset }
     />
   );
 };

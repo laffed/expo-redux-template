@@ -1,6 +1,8 @@
 import { ApplicationState, ThunkStatus } from '@app/core/types';
 
-import { selectBar, selectBuzz, selectBarTestUser } from '../bar';
+import {
+  selectBar, selectBuzz, selectBarTestUser
+} from '../bar';
 
 
 describe('bar selectors', () => {

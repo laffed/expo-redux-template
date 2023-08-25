@@ -39,7 +39,10 @@ const createStore = () => {
 
   const persistor = persistStore(store);
 
-  return { store, persistor };
+  return {
+    store,
+    persistor,
+  };
 };
 
 const { store, persistor } = createStore();
