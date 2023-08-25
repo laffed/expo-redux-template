@@ -35,9 +35,6 @@
     "validate": "npm-run-all tsc lint _test",
     "_validate": "npm-run-all tsc lint _test"
   },
-  "jest": {
-    "preset": "jest-expo"
-  },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
     "@hookform/resolvers": "^3.3.0",
