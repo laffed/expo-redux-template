@@ -1,3 +1,6 @@
+import { ListRenderItem } from 'react-native';
+
+
 export enum ThunkStatus {
   IDLE = 'IDLE',
   PENDING = 'PENDING',
@@ -16,3 +19,8 @@ export type RejectWith<T> = {
   rejectValue: T
 }
 
+export type KeyExtractorOf<
+  T extends unknown[]
+> = <I extends T[number]>(item: I, i: number) => string;
+
+export type RenderItemOf<T extends unknown[]> = ListRenderItem<T[number]>;

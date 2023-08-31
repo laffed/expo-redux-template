@@ -219,6 +219,9 @@ module.exports = {
     }],
     '@typescript-eslint/no-unnecessary-type-arguments': 0,
     '@typescript-eslint/no-namespace': 0,
+     '@typescript-eslint/no-misused-promises': [2, {
+      'checksVoidReturn': false
+    }],
     '@typescript-eslint/no-confusing-void-expression': 2,
     '@typescript-eslint/no-unsafe-assignment': 0,
     'no-restricted-imports': [

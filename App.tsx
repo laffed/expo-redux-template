@@ -4,7 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { NavigationProvider } from '@app/navigation/NavigationProvider';
 import { StoreProvider } from '@app/core/store/StoreProvider';
-import { ToastInstance } from '@app/components';
+import { ToastInstance } from '@app/components/ToastInstance/ToastInstance';
 
 
 export const App: VFC = () => {

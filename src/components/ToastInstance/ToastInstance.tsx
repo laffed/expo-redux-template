@@ -1,6 +1,6 @@
 import { VFC } from 'react';
 import {
-  useWindowDimensions, View, Text
+  useWindowDimensions, View
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Toast, {
@@ -8,6 +8,7 @@ import Toast, {
 } from 'react-native-toast-message';
 import { Feather } from '@expo/vector-icons';
 
+import { ThemedText } from '@components/index';
 import { Colors } from '@app/styles';
 
 
@@ -52,13 +53,13 @@ const StyledToast: VFC<{
           marginRight: 5,
         }}
       />
-      <Text
+      <ThemedText
         style={{
           color,
         }}
       >
         {text}
-      </Text>
+      </ThemedText>
     </View>
   );
 };
