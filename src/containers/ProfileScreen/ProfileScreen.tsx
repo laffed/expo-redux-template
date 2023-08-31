@@ -6,7 +6,7 @@ import { SafeScreen } from '@app/components';
 
 export const ProfileScreen: VFC<TabStackScreenProp<TabRoutes.PROFILE>> = () => {
   return (
-    <SafeScreen omittedEdges={['bottom']}>
+    <SafeScreen omittedEdges={ ['bottom'] }>
       { null }
     </SafeScreen>
   );
