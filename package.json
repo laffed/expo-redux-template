@@ -72,6 +72,7 @@
     "react-native-screens": "~3.22.0",
     "react-native-toast-message": "^2.1.5",
     "react-native-web": "~0.19.6",
+    "react-query": "^3.39.3",
     "react-redux": "^7.2.6",
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0"
